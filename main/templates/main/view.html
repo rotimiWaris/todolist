@@ -1,0 +1,14 @@
+{% extends 'main/base.html' %}
+
+{% block title %} Views {% endblock %}
+
+{% block content %}
+	{% for td in user.todolist.all %}
+		<!-- <div class="float-right">
+			<form method="post" action="{{item.id}}/del/">
+				<button type="submit" class="btn btn-sm btn-danger">Delete</button>
+			</form>
+		</div> -->
+		<p><a href="/{{td.id}}">{{td.name}}</a></p>
+	{% endfor %}
+{% endblock %}
