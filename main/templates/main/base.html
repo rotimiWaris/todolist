@@ -16,14 +16,20 @@
     <link href="{% static 'css/mdb.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
     <link href="{% static 'favicon.ico' %}" rel="shortcut icon" type="image/x-icon">
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+    </style>
     {% block extra_head %}
     {% endblock %}
   </head>
   <header>
 
-  <nav class="navbar fixed-top navbar-expand-lg navbar-dark black scrolling-navbar">
-    <div class="container">
-      <a class="navbar-brand" href="/home"><strong>To-Do-List</strong></a>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark black scrolling-navbar">
+      <a class="navbar-brand" href="#"><strong>To-Do-List</strong></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -45,7 +51,6 @@
           </li>
         </ul>
       </div>
-    </div>
   </nav>
 </header>
 <main class="my-5">
