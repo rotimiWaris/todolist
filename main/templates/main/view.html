@@ -3,12 +3,14 @@
 {% block title %} Views {% endblock %}
 
 {% block content %}
+<div class="mt-4">
 	{% for td in user.todolist.all %}
 		<!-- <div class="float-right">
 			<form method="post" action="{{item.id}}/del/">
 				<button type="submit" class="btn btn-sm btn-danger">Delete</button>
 			</form>
 		</div> -->
-		<p><a href="/{{td.id}}">{{td.name}}</a></p>
+			<h6><a href="/{{td.id}}">{{td.name}}</a></h6>
 	{% endfor %}
+</div>
 {% endblock %}

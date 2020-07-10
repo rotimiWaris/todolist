@@ -9,8 +9,10 @@
 	<form method="post" class="form-group">
 		{% csrf_token %}
 		{{form|crispy}}
+		<div class="text-center">
+			<button type="submit" class="btn btn-outline-success waves-effect">Sign Up</button>
+		</div>
 		<p>Don't have an account? Create one <a href="/register">Here</a></p>
-		<button  type="submit" class="btn btn-success">Login</button>
 	</form>
 {% endblock %}
 {% endblock %}
