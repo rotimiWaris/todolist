@@ -29,6 +29,7 @@
   <header>
 
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark black scrolling-navbar">
+      <div class="container">
       <a class="navbar-brand" href="/"><strong>To-Do-List</strong></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,21 +52,23 @@
           </li>
         </ul>
       </div>
+    </div>
   </nav>
 </header>
+<main class="py-3">
   <div class="container">
         {% if user.is_authenticated %}
           {% block content %}
           {% endblock %}
         {% else %}
-        <div class="text-center">
+        <div class="text-center mt-2">
             <h4>You're not logged in!</h4>
           </div>
             {% block login_content %}
             {% endblock %}
         {% endif %}
   <div>
-
+</main>
 <script type="text/javascript" src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/popper.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
