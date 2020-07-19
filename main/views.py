@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import ToDoList, Item
@@ -5,33 +6,37 @@ from .forms import CreateNewList
 from django.contrib.auth import get_user
 
 # Create your views here.
-def index(response, id):
-    obj = ToDoList.objects.get(id=id)
+def index(request, id):
+	obj = ToDoList.objects.get(id=id)
+	if obj in request.user.todolist.all():
+		
+		if request.method == "POST":
+			if request.POST.get('save'):
+				for item in obj.item_set.all():
+					if request.POST.get("c" + str(item.id)) == "clicked":
+						item.complete = True
+					else:
+						item.complete = False
+					item.save()
 
-    if response.method == "POST":
-    	if response.POST.get('save'):
-    		for item in obj.item_set.all():
-    			if response.POST.get("c" + str(item.id)) == "clicked":
-    				item.complete = True
-    			else:
-    				item.complete = False
+			elif request.POST.get("newitem"):
+				txt = request.POST.get("new")
+				
+				if len(txt) != 0:
+					obj.item_set.create(text=txt, complete=False)
+				else:
+					print("Invalid")
 
-    			item.save()
+		return render(request, "main/list.html", {"obj": obj})
 
-    	elif response.POST.get("newitem"):
-    		txt = response.POST.get("new")
+	messages.warning(request, "You're not the owner of that!")
+	return redirect('/')
 
-	    	if len(txt) != 0:
-	    		obj.item_set.create(text=txt, complete=False)
-	    	else:
-	    		print("Invalid")
-
-    return render(response, "main/list.html", {"obj": obj})
 
 def home(response):
 	#Gonna modernize this place later
 	new = get_user
-        
+
 	return render(response, "main/home.html", {"new": new})
 
 def create(response):
@@ -43,7 +48,7 @@ def create(response):
         	obj = ToDoList(name=new)
         	obj.save()
         	response.user.todolist.add(obj)
-			
+
         return HttpResponseRedirect(f"/{obj.id}")
 
     else:
@@ -58,6 +63,5 @@ def view(response):
 #     name = ToDoList.objects.get(id=id)
 #     for item in name.item_set.all():
 #         item.delete()
-    
-#     return redirect("main/view.html")
 
+#     return redirect("main/view.html")

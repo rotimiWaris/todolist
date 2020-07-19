@@ -3,7 +3,8 @@
 {% block title %} Views {% endblock %}
 
 {% block content %}
-<div class="mt-4">
+<div class="mt-5 pt-2">
+	{% if user.todolist.all %}
 	{% for td in user.todolist.all %}
 		<!-- <div class="float-right">
 			<form method="post" action="{{item.id}}/del/">
@@ -12,5 +13,9 @@
 		</div> -->
 			<h6><a href="/{{td.id}}">{{td.name}}</a></h6>
 	{% endfor %}
+	{% else %}
+	<h2>You don't have any To-Do-List yet!</h2>
+	<h5>Create one <a href="/create">here</a></h5>
+	{% endif %}
 </div>
 {% endblock %}
