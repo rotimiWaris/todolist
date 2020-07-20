@@ -128,7 +128,7 @@ django_heroku.settings(locals())
 
 if ENVIRONMENT == 'production':
     # DEBUG = False
-    SECRET_KEY = os.getenv('SECRET_KEY')
+    # SECRET_KEY = os.getenv('SECRET_KEY')
     SESSION_COOKIE_SECURE = True
     SECURE_BROWSER_XSS_FILTER = True
     SECURE_CONTENT_TYPE_NOSNIFF = True
