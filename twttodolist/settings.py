@@ -127,6 +127,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', False)
 
+DEBUG_PROPAGATE_EXCEPTIONS = True
+
 django_heroku.settings(locals())
 
 if ENVIRONMENT == 'production':
