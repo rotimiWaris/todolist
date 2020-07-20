@@ -123,11 +123,14 @@ LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', False)
 
 django_heroku.settings(locals())
 
 if ENVIRONMENT == 'production':
-    # DEBUG = False
+    DEBUG = False
     # SECRET_KEY = os.getenv('SECRET_KEY')
     SESSION_COOKIE_SECURE = True
     SECURE_BROWSER_XSS_FILTER = True
