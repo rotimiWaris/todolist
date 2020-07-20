@@ -1,7 +1,6 @@
 import os
 import django_heroku
 import dj_database_url
-from decouple import config
 
 
 ENVIRONMENT = os.getenv('ENVIRONMENT', 'development')
@@ -128,7 +127,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 django_heroku.settings(locals())
 
 if ENVIRONMENT == 'production':
-    DEBUG = config('DEBUG', cast=bool)
+    DEBUG = False
     # SECRET_KEY = os.getenv('SECRET_KEY')
     # SESSION_COOKIE_SECURE = True
     # SECURE_BROWSER_XSS_FILTER = True
