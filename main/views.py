@@ -27,7 +27,7 @@ def index(request, id):
 				else:
 					print("Invalid")
 
-		return render(request, "main/list.html", {"obj": obj})
+		return render(request, "list.html", {"obj": obj})
 
 	messages.warning(request, "You're not the owner of that!")
 	return redirect('/')
@@ -37,7 +37,7 @@ def home(response):
 	#Gonna modernize this place later
 	new = get_user
 
-	return render(response, "main/home.html", {"new": new})
+	return render(response, "home.html", {"new": new})
 
 def create(response):
     if response.method == "POST":
@@ -54,10 +54,10 @@ def create(response):
     else:
         form = CreateNewList()
 
-    return render(response, "main/create.html", {"form": form})
+    return render(response, "create.html", {"form": form})
 
 def view(response):
-	return render(response, "main/view.html", {})
+	return render(response, "view.html", {})
 
 
 def delete(request, id):
