@@ -9,7 +9,7 @@ from django.contrib.auth import get_user
 def index(request, id):
 	obj = ToDoList.objects.get(id=id)
 	if obj in request.user.todolist.all():
-		
+
 		if request.method == "POST":
 			if request.POST.get('save'):
 				for item in obj.item_set.all():
@@ -21,7 +21,7 @@ def index(request, id):
 
 			elif request.POST.get("newitem"):
 				txt = request.POST.get("new")
-				
+
 				if len(txt) != 0:
 					obj.item_set.create(text=txt, complete=False)
 				else:
@@ -59,9 +59,7 @@ def create(response):
 def view(response):
 	return render(response, "main/view.html", {})
 
-# def delete(request, id):
-#     name = ToDoList.objects.get(id=id)
-#     for item in name.item_set.all():
-#         item.delete()
 
-#     return redirect("main/view.html")
+def delete(request, id):
+    ToDoList.objects.get(id=id).delete()
+    return redirect("/view/")

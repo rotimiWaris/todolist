@@ -27,8 +27,7 @@
     {% endblock %}
   </head>
   <header>
-
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark black scrolling-navbar">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark black">
       <div class="container">
       <a class="navbar-brand" href="/"><strong>To-Do-List</strong></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -63,9 +62,9 @@
         {% else %}
         <div class="text-center mt-5 pt-2">
             <h4>You're not logged in!</h4>
-          </div>
-          {% block login_content %}
-            {% endblock %}
+        </div>
+        {% block login_content %}
+        {% endblock %}
         {% endif %}
   <div>
 </main>
@@ -84,5 +83,5 @@
         });
     });
 </script>
-  </body>
+</body>
 </html>

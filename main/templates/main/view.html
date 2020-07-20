@@ -6,15 +6,18 @@
 <div class="mt-5 pt-2">
 	{% if user.todolist.all %}
 	{% for td in user.todolist.all %}
-		<!-- <div class="float-right">
-			<form method="post" action="{{item.id}}/del/">
-				<button type="submit" class="btn btn-sm btn-danger">Delete</button>
+		<li class="list-group-item">
+			<form method="post" action="/delete/{{ td.id }}/">
+				{% csrf_token %}
+					<button type="submit" class="close btn-danger">
+							<span aria-hidden="true">&times;</span>
+					</button>
 			</form>
-		</div> -->
-			<h6><a href="/{{td.id}}">{{td.name}}</a></h6>
+			<span><a href="/{{td.id}}">{{td.name}}</a></span>
+		</li>
 	{% endfor %}
 	{% else %}
-	<h2>You don't have any To-Do-List yet!</h2>
+	<h2>You don't have any To-Do-List!</h2>
 	<h5>Create one <a href="/create">here</a></h5>
 	{% endif %}
 </div>

@@ -15,5 +15,8 @@ class Item(models.Model):
     text = models.CharField(max_length=300)
     complete = models.BooleanField()
 
+    class Meta:
+        ordering = ['-pk', '-added_date']
+
     def __str__(self):
         return self.text

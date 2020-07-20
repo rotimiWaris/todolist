@@ -12,7 +12,7 @@
 {% endblock %}
 
 {% block content %}
-	<h3 class="mt-5 pt-1">{{obj.name}}</h3>
+	<h5 class="mt-5 pt-1 mb-3 h5 title">{{obj.name}}</h5>
 	<form method="post" action="#">
 		{% csrf_token %}
 			{% for item in obj.item_set.all %}
@@ -32,12 +32,12 @@
 
 		<div class="input-group mb-3">
 			<div class="input-group-prepend">
-				<button type="submit", name="newitem", value="newitem" class="btn btn-outline-primary waves-effect">Add Item</button>
+				<button type="submit" name="newitem" value="newitem" class="btn btn-outline-primary waves-effect">Add Item</button>
 			</div>
 			<input type="text" name="new" class="form-control more">
 		</div>
 	<div class="text-center">
-		<button type="submit", name="save", value="save" class="btn btn-outline-success waves-effect">Save</button>
+		<button type="submit" name="save" value="save" class="btn btn-outline-success waves-effect">Save</button>
 	</div>
 	</form>
 {% endblock %}
