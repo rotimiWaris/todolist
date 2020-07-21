@@ -17,7 +17,7 @@ SECRET_KEY = 'p&-@e@a!m0-wo7^qmv5toqfol^q8+8$)9ce$uyn^-$nn(vgw(3'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['todolist.herokuapp.com']
 
 
 # Application definition
@@ -130,10 +130,26 @@ COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', False)
 
 DEBUG_PROPAGATE_EXCEPTIONS = True
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+             'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
+        },
+    },
+}
+
 django_heroku.settings(locals())
 
 if ENVIRONMENT == 'production':
-    # DEBUG = False
+    DEBUG = False
     # SECRET_KEY = os.getenv('SECRET_KEY')
     SESSION_COOKIE_SECURE = True
     SECURE_BROWSER_XSS_FILTER = True
