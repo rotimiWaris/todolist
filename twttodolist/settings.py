@@ -149,8 +149,8 @@ LOGGING = {
 django_heroku.settings(locals())
 
 if ENVIRONMENT == 'production':
-    # DEBUG = bool(os.environ.get("DEBUG", False))
-    DEBUG = bool(os.environ.get('DEBUG', ''))
+    DEBUG = bool(os.environ.get('DEBUG', False))
+    # DEBUG = bool(os.environ.get('DEBUG', ''))
     # DEBUG = os.environ.get('DEBUG', False)
     # SECRET_KEY = os.getenv('SECRET_KEY')
     SESSION_COOKIE_SECURE = True
