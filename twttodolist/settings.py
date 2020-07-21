@@ -17,7 +17,7 @@ SECRET_KEY = 'p&-@e@a!m0-wo7^qmv5toqfol^q8+8$)9ce$uyn^-$nn(vgw(3'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['todolist.herokuapp.com']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -128,7 +128,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', False)
 
-DEBUG_PROPAGATE_EXCEPTIONS = True
+# DEBUG_PROPAGATE_EXCEPTIONS = True
 
 LOGGING = {
     'version': 1,
