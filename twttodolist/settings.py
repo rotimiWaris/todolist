@@ -128,11 +128,11 @@ LOGOUT_REDIRECT_URL = "/"
 
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+# STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', False)
 
-# DEBUG_PROPAGATE_EXCEPTIONS = True
+DEBUG_PROPAGATE_EXCEPTIONS = True
 
 LOGGING = {
     'version': 1,
@@ -150,7 +150,7 @@ LOGGING = {
     },
 }
 
-# django_heroku.settings(locals())
+django_heroku.settings(locals(), logging=False)
 
 if ENVIRONMENT == 'production':
     # DEBUG = bool(os.environ.get('DEBUG', False))
