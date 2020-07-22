@@ -140,7 +140,8 @@ LOGOUT_REDIRECT_URL = "/"
 
 # STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
-# django_heroku.settings(locals(), logging=False)
+# TODO This goat is not allowing me to turn debug=off in production
+django_heroku.settings(locals(), logging=False)
 
 
 if ENVIRONMENT == 'production':
@@ -148,7 +149,7 @@ if ENVIRONMENT == 'production':
     # DEBUG = bool(os.environ.get('DEBUG', ''))
     # DEBUG = os.environ.get('DEBUG', False)
     # DEBUG = os.getenv('DEBUG', False) == 'True'
-    DEBUG = False
+    # DEBUG = False
     # SECRET_KEY = os.getenv('SECRET_KEY')
     SESSION_COOKIE_SECURE = True
     SECURE_BROWSER_XSS_FILTER = True
