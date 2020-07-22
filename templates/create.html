@@ -28,6 +28,9 @@
 {% endblock %}
 
 {% block content %}
+
+{% if user.is_authenticated %}
+
 <h3 class="mt-5">Create Page</h3>
 <form method="post" action="/create/" class="form-group">
 	{% csrf_token %}
@@ -37,4 +40,11 @@
 	</div>
 </form>
 <b>Hint:</b> <span>max-length = 30</span>
+
+{% else %}
+<div class="text-center mt-5 pt-2">
+	<h4>You're not logged in!</h4>
+</div>
+{% endif %}
+
 {% endblock %}

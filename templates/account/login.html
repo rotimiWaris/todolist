@@ -1,0 +1,147 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+{% load account socialaccount %}
+
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+
+{% block extra_head %}
+<style>
+  body {
+    background-image: linear-gradient(135deg, #d4ced2 10%, #d4d5d6 90%);
+  }
+
+  .register-wrapper {
+    position: relative;
+    z-index: 3;
+    font-size:16px;
+    color: #999999;
+  }
+  .register-wrapper * {
+    box-sizing: border-box;
+  }
+  .register-wrapper form input[type="text"],
+  .register-wrapper form input[type="password"] {
+    display: inline-block;
+    width: 100%;
+    padding: 0 20px;
+    line-height: 50px;
+    height: 50px;
+    background-color: white;
+    border: 1px solid #e6e6e6;
+    border-bottom-width: 3px;
+    border-radius: 5px;
+    outline: 0;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+  }
+  .register-wrapper form input:not(:last-child) {
+    margin-bottom: 20px;
+  }
+  .register-wrapper form input[type="email"]:focus, 
+  .register-wrapper form input[type="email"]:active, 
+  .register-wrapper form input[type="password"]:focus, 
+  .register-wrapper form input[type="password"]:active {
+    border-color: #cccccc;
+  }
+  .register-title {
+    font-size: 1.5em;
+    padding-bottom: 20px;
+    margin: 0 0 20px;
+    border-bottom: 1px dashed #e6e6e6;
+  }
+  .register-block {
+    position: relative;
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    margin: auto;
+    padding: 30px;
+    background-color: white;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+  }
+  .register-block:before, 
+  .register-block:after {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    content: "";
+    background-color: white;
+    border: 1px solid #e6e6e6;
+    border-radius: 5px;
+    -webkit-transform: scale(0.9) translate(0, 0);
+            transform: scale(0.9) translate(0, 0);
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+  }
+  .register-block:hover:before {
+    z-index: -1;
+    -webkit-transform: scale(0.96) translate(0, 16px);
+            transform: scale(0.96) translate(0, 16px);
+  }
+  .register-block:hover:after {
+    z-index: -2;
+    -webkit-transform: scale(0.92) translate(0, 32px);
+            transform: scale(0.92) translate(0, 32px);
+  }
+</style>
+{% endblock %}
+
+
+{% block content %}
+
+{% get_providers as socialaccount_providers %}
+
+{% if socialaccount_providers %}
+<p>{% blocktrans with site.name as site_name %}Please sign in with one
+of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
+for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
+
+<div class="socialaccount_ballot">
+
+  <ul class="socialaccount_providers">
+    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+  </ul>
+
+  <div class="login-or">{% trans 'or' %}</div>
+
+</div>
+
+{% include "socialaccount/snippets/login_extra.html" %}
+
+{% else %}
+<!-- <div class="text-center">
+<p class="mt-5">{% blocktrans %}If you have not created an account yet, then please 
+  <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
+</div> -->
+{% endif %}
+
+<div class="register-wrapper mt-5 pt-5">
+  <div class="register-block">
+    <div class="text-center">
+    <h1 class="register-title">{% trans "Sign In" %}</h1>
+  </div>
+    <form class="login" method="POST" action="{% url 'account_login' %}">
+      {% csrf_token %}
+      {{ form.as_p }}
+      {% if redirect_field_value %}
+      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+      {% endif %}
+      <div class="text-center">
+      <button class="primaryAction btn btn-outline-success waves-effect" type="submit">{% trans "Sign In" %}</button>
+    </div>
+    </form>
+    <div class="mt-4">
+    <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+    <a class="float-right" href="{{ signup_url }}">Sign up</a>
+  </div>
+  </div>
+</div>
+{% endblock %}

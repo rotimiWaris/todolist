@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import ToDoList, Item
 from .forms import CreateNewList
-from django.contrib.auth import get_user
+
 
 # Create your views here.
 def index(request, id):
@@ -29,35 +29,34 @@ def index(request, id):
 
 		return render(request, "list.html", {"obj": obj})
 
-	messages.warning(request, "You're not the owner of that!")
+	# messages.warning(request, "You're not the owner of that!")
 	return redirect('/')
 
 
 def home(response):
 	#Gonna modernize this place later
-	new = get_user
+	return render(response, "home.html", {})
 
-	return render(response, "home.html", {"new": new})
 
-def create(response):
-    if response.method == "POST":
-        form = CreateNewList(response.POST)
+def create(request):
+    if request.method == "POST":
+        form = CreateNewList(request.POST)
 
         if form.is_valid():
         	new = form.cleaned_data['name']
         	obj = ToDoList(name=new)
         	obj.save()
-        	response.user.todolist.add(obj)
+        	request.user.todolist.add(obj)
 
-        return HttpResponseRedirect(f"/{obj.id}")
+        return redirect(f"/{obj.id}")
 
     else:
         form = CreateNewList()
 
-    return render(response, "create.html", {"form": form})
+    return render(request, "create.html", {"form": form})
 
-def view(response):
-	return render(response, "view.html", {})
+def view(request):
+	return render(request, "view.html", {})
 
 
 def delete(request, id):

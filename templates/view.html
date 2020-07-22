@@ -3,6 +3,9 @@
 {% block title %} Views {% endblock %}
 
 {% block content %}
+
+{% if user.is_authenticated %}
+
 <div class="mt-5 pt-2">
 	{% if user.todolist.all %}
 	{% for td in user.todolist.all %}
@@ -21,4 +24,11 @@
 	<h5>Create one <a href="/create">here</a></h5>
 	{% endif %}
 </div>
+
+{% else %}
+<div class="text-center mt-5 pt-2">
+	<h4>You're not logged in!</h4>
+</div>
+{% endif %}
+
 {% endblock %}
