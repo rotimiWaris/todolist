@@ -161,6 +161,7 @@ if ENVIRONMENT == 'production':
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
     DEBUG_PROPAGATE_EXCEPTIONS = True
     COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', False)
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
     LOGGING = {
         'version': 1,
         'disable_existing_loggers': False,
