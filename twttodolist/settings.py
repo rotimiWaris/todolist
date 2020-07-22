@@ -15,7 +15,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'p&-@e@a!m0-wo7^qmv5toqfol^q8+8$)9ce$uyn^-$nn(vgw(3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
@@ -44,7 +44,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # 'whitenoise.middleware.WhiteNoiseMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'twttodolist.urls'
@@ -128,9 +128,11 @@ LOGOUT_REDIRECT_URL = "/"
 
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', False)
+
+# django_heroku.settings(locals(), logging=False)
 
 DEBUG_PROPAGATE_EXCEPTIONS = True
 
@@ -149,8 +151,6 @@ LOGGING = {
         },
     },
 }
-
-django_heroku.settings(locals(), logging=False)
 
 if ENVIRONMENT == 'production':
     # DEBUG = bool(os.environ.get('DEBUG', False))
