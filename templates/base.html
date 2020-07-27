@@ -26,36 +26,38 @@
   </style>
 </head>
 
-{% include 'snippets/navbar.html' %}
+<body>
 
-<main class="py-3">
-  <div class="container">
-    {% block content %}
-    {% endblock %}
-  </div>
-</main>
-{% block extra_content %}
-{% endblock %}
+  {% include 'snippets/navbar.html' %}
 
-<script type="text/javascript" src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/popper.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script>
-<script src="{% static 'js/main.js' %}"></script>
-<script type="text/javascript">
-  new WOW().init();
-  $(document).ready(function () {
-    $('.dropdown-submenu a.test').on("click", function (e) {
-      $(this).next('ul').toggle();
-      e.stopPropagation();
-      e.preventDefault();
+  <main class="py-3">
+    <div class="container">
+      {% block content %}
+      {% endblock %}
+    </div>
+  </main>
+  {% block extra_content %}
+  {% endblock %}
+
+
+  <script type="text/javascript" src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/popper.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script>
+  <script src="{% static 'js/main.js' %}"></script>
+  <script type="text/javascript">
+    new WOW().init();
+    $(document).ready(function () {
+      $('.dropdown-submenu a.test').on("click", function (e) {
+        $(this).next('ul').toggle();
+        e.stopPropagation();
+        e.preventDefault();
+      });
     });
-  });
-</script>
+  </script>
 
-{% block extra_script %}
-{% endblock %}
-
+  {% block extra_script %}
+  {% endblock %}
 </body>
 
 </html>

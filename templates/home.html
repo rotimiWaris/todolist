@@ -5,266 +5,11 @@
 {% block head_title %} Home {% endblock %}
 
 {% block extra_head %}
-<style>
-  .btn-3d-2 {
-    position: relative;
+<script>
 
-    background: #ecd300;
-    background: radial-gradient(hsl(10, 100%, 50%), hsl(54, 100%, 40%));
 
-    font-size: 1.4rem;
-    text-shadow: 0 -1px 0 #c3af07;
-    color: white;
-    border: solid 1px hsl(10, 100%, 20%);
-    border-radius: 100%;
-    height: 120px;
-    width: 120px;
-    z-index: 4;
-    outline: none;
-    box-shadow: inset 0 1px 0 hsl(10, 100%, 50%),
-      0 2px 0 hsl(10, 100%, 20%),
-      0 3px 0 hsl(10, 100%, 18%),
-      0 4px 0 hsl(10, 100%, 16%),
-      0 5px 0 hsl(10, 100%, 14%),
-      0 6px 0 hsl(10, 100%, 12%),
-      0 7px 0 hsl(10, 100%, 10%),
-      0 8px 0 hsl(10, 100%, 8%),
-      0 9px 0 hsl(10, 100%, 6%);
-  }
 
-  .btn-3d-2:hover {
-    background: radial-gradient(hsl(10, 100%, 45%), hsl(10, 100%, 35%));
-  }
-
-  .btn-3d-2:active {
-    background: radial-gradient(hsl(10, 100%, 43%), hsl(10, 100%, 33%));
-    top: 2px;
-    outline: none;
-
-    box-shadow: inset 0 1px 0 hsl(10, 100%, 50%),
-      0 2px 0 hsl(10, 100%, 20%),
-      0 3px 0 hsl(10, 100%, 18%),
-      0 4px 0 hsl(10, 100%, 16%),
-      0 5px 0 hsl(10, 100%, 14%),
-      0 6px 0 hsl(10, 100%, 12%),
-      0 7px 0 hsl(10, 100%, 10%);
-  }
-
-  .path {
-    position: relative;
-    width: 100%;
-    height: 100px;
-    background: #333;
-    padding: 20px;
-    box-sizing: border-box;
-    overflow: hidden;
-  }
-
-  .path::after {
-    content: "";
-    position: absolute;
-    display: block;
-    border-top: 12px dotted white;
-    width: 90%;
-    top: 50%;
-    left: 5%;
-    transform: translateY(-50%);
-    -webkit-transform: translateY(-50%);
-    -moz-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    -o-transform: translateY(-50%);
-  }
-
-  .pacman {
-    position: absolute;
-    z-index: 99;
-    top: 50%;
-    left: -20%;
-    animation: moveForward 5s linear infinite;
-    -webkit-animation: moveForward 5s linear infinite;
-    animation-delay: 1.2s;
-  }
-
-  .pacman::before,
-  .pacman::after {
-    content: "";
-    display: block;
-    height: 0;
-    width: 0;
-    position: absolute;
-    border: solid 30px yellow;
-    margin-top: -30px;
-    border-radius: 50%;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -ms-border-radius: 50%;
-    -o-border-radius: 50%;
-    border-right-color: transparent;
-    border-bottom-color: transparent;
-    animation: mouthTop 0.7s ease infinite;
-    -webkit-animation: mouthTop 0.7s ease infinite;
-  }
-
-  .pacman::after {
-    border-color: yellow;
-    border-right-color: transparent;
-    border-top-color: transparent;
-    animation: mouthBottom 0.7s ease infinite;
-    -webkit-animation: mouthBottom 0.7s ease infinite;
-  }
-
-  .ghost {
-    position: absolute;
-    z-index: 99;
-    top: 50%;
-    left: 20%;
-    height: 70px;
-    width: 60px;
-    transform: translateY(-50%);
-    -webkit-transform: translateY(-50%);
-    -moz-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    -o-transform: translateY(-50%);
-    background: red;
-    border-top-left-radius: 70px;
-    border-top-right-radius: 70px;
-    animation: moveForward 5s linear infinite, colorSwapBlue 0.2s linear infinite, colorSwapPurple 3s linear infinite;
-    -webkit-animation: moveForward 5s linear infinite, colorSwapBlue 0.2s linear infinite,
-      colorSwapPurple 3s linear infinite;
-  }
-
-  .ghost::before,
-  .ghost::after {
-    content: "";
-    position: absolute;
-    background: #fff;
-    height: 25px;
-    width: 20px;
-    border-radius: 100%;
-    -webkit-border-radius: 100%;
-    -moz-border-radius: 100%;
-    -ms-border-radius: 100%;
-    -o-border-radius: 100%;
-    top: 15px;
-    left: 4px;
-  }
-
-  .ghost::after {
-    left: 28px;
-  }
-
-  .eyes::before,
-  .eyes::after {
-    content: "";
-    position: absolute;
-    background: green;
-    height: 10px;
-    width: 10px;
-    border-radius: 100%;
-    -webkit-border-radius: 100%;
-    -moz-border-radius: 100%;
-    -ms-border-radius: 100%;
-    -o-border-radius: 100%;
-    top: 25px;
-    left: 5px;
-    z-index: 99;
-    animation: peeperLeft 0.7s linear infinite;
-    -webkit-animation: peeperLeft 0.7s linear infinite;
-  }
-
-  .eyes::after {
-    left: 30px;
-    animation: peeperRight 0.7s linear infinite;
-    -webkit-animation: peeperRight 0.7s linear infinite;
-  }
-
-  .skirt,
-  .skirt::before,
-  .skirt::after {
-    position: absolute;
-    height: 0;
-    width: 0;
-    border: solid 10px #333;
-    border-top-color: transparent;
-    bottom: -10px;
-  }
-
-  .skirt::before {
-    content: "";
-    left: 10px;
-  }
-
-  .skirt::after {
-    content: "";
-    left: 30px;
-  }
-
-  @keyframes moveForward {
-    0% {
-      left: -10%;
-    }
-
-    100% {
-      left: 100%;
-    }
-  }
-
-  @keyframes mouthTop {
-    50% {
-      transform: rotate(44deg);
-      -webkit-transform: rotate(44deg);
-      -moz-transform: rotate(44deg);
-      -ms-transform: rotate(44deg);
-      -o-transform: rotate(44deg);
-    }
-  }
-
-  @keyframes mouthBottom {
-    50% {
-      transform: rotate(-44deg);
-      -webkit-transform: rotate(-44deg);
-      -moz-transform: rotate(-44deg);
-      -ms-transform: rotate(-44deg);
-      -o-transform: rotate(-44deg);
-    }
-  }
-
-  @keyframes colorSwapBlue {
-    20% {
-      background-color: blue;
-    }
-  }
-
-  @keyframes colorSwapPurple {
-    60% {
-      background-color: purple;
-    }
-  }
-
-  @keyframes peeperLeft {
-
-    0%,
-    100% {
-      left: 5px;
-    }
-
-    50% {
-      left: 10px;
-    }
-  }
-
-  @keyframes peeperRight {
-
-    0%,
-    100% {
-      left: 30px;
-    }
-
-    50% {
-      left: 35px;
-    }
-  }
-</style>
+</script>
 {% endblock %}
 
 {% block content %}
@@ -295,7 +40,7 @@
 {% endcomment %}
 
 <div class="mt-5">
-  <h1>Hello there {{request.user}}!</h1>
+  <h4><span id="greet">Hello there</span> {{request.user}}!</h4>
   <p>You can create your To-Do Lists <a href="/create">here</a></p>
 </div>
 
@@ -309,12 +54,13 @@
 {% block extra_content %}
 <section>
   <div class="text-center">
-    <button style="outline: none;" type="button" name="button" class="btn-3d-2" id="showPacman">Show Pacman</button>
+    <button type="button" name="button" class="btn btn-lg btn-otline-danger waves-effect" id="showPacman">Pacman(On /
+      Off)</button>
   </div>
   <div class="text-center">
-    <span id="text" style="display: none;"><b>PacMan Says: </b>
-      <p>Did I ask you to click me?</p>
-    </span>
+    <p id="text" style="display: none;"><b>PacMan Says: </b>
+      <span>Did I ask you to click me?</span>
+    </p>
     <div class="path" id="path" style="display: none;">
       <div class="pacman"></div>
       <div class="ghost">
@@ -330,12 +76,35 @@
 {% block extra_script %}
 <script>
   $("#showPacman").on("click", function (e) {
-    $('#path').attr("style", "display:inline-block");
-    $("#showPacman").attr("style", "display:none")
+    $('#path').fadeToggle(400);
   });
 
   $('#path').on("click", function (e) {
-    $('#text').attr("style", "display:inline")
+    $('#text').fadeToggle("100")
   });
+
+  let greet = document.getElementsByTagName("span")
+  let date = new Date();
+  let currentHour = date.getHours();
+
+  let message;
+
+  if (currentHour >= 5 && currentHour < 12) {
+    message = "Good Morning";
+
+  } else if (currentHour >= 12 && currentHour < 18) {
+    message = "Good Afternoon";
+
+  } else if (currentHour >= 18 && currentHour < 0) {
+    message = "Good Evening";
+
+  } else if (currentHour >= 0 && currentHour < 5) {
+    message = "You Should be sleeping";
+
+  } else {
+    message = "Are you from another planet :O";
+  }
+
+  $("#greet").text(message);
 </script>
 {% endblock extra_script %}
