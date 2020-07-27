@@ -11,4 +11,7 @@ urlpatterns = [
     path("create/", views.create, name="create"),
     path("view/", views.view, name="view"),
     path("delete/<int:id>/", views.delete, name="delete"),
+
+    # GAMES
+    path("locals-rpg/", views.rpg, name="rpg"),
 ]

@@ -5,11 +5,7 @@
 {% block head_title %} Home {% endblock %}
 
 {% block extra_head %}
-<script>
 
-
-
-</script>
 {% endblock %}
 
 {% block content %}
@@ -43,20 +39,22 @@
   <h4><span id="greet">Hello there</span> {{request.user}}!</h4>
   <p>You can create your To-Do Lists <a href="/create">here</a></p>
 </div>
-
-{% else %}
-<div class="text-center mt-5 pt-2">
-  <h4>You're not logged in!</h4>
-</div>
 {% endif %}
 
 {% endblock %}
+
 {% block extra_content %}
+
+{% if not user.is_authenticated %}
+<div class="text-center mt-5">
+  <h4>LogIn to play some games and Of course, make your To-Do Lists.</h4>
+</div>
+{% endif %}
+<div class="text-center">
+  <button type="button" name="button" class="btn btn-lg waves-effect" id="showPacman">Pacman(On /
+    Off)</button>
+</div>
 <section>
-  <div class="text-center">
-    <button type="button" name="button" class="btn btn-lg btn-otline-danger waves-effect" id="showPacman">Pacman(On /
-      Off)</button>
-  </div>
   <div class="text-center">
     <p id="text" style="display: none;"><b>PacMan Says: </b>
       <span>Did I ask you to click me?</span>
@@ -70,17 +68,35 @@
     </div>
   </div>
 </section>
+<div class="text-center mt-5">
+  {% if user.is_authenticated %}
+  <button class="btn btn-lg btn-outline-danger waves-effect" id="games">Play Some Games</button>
+  {% endif %}
+</div>
+{% if user.is_authenticated %}
+<section id="playGame" style="display: none;">
+  <div class="text-center">
+    <a href="{% url 'core:rpg' %}" class="btn btn-lg waves-effect">Simple RPG game</a>
+  </div>
+</section>
+{% endif %}
 {% endblock %}
 
 
 {% block extra_script %}
 <script>
   $("#showPacman").on("click", function (e) {
-    $('#path').fadeToggle(400);
+    $('#path').fadeToggle(500);
+    $('#games').slideToggle(500, 'linear');
   });
 
   $('#path').on("click", function (e) {
     $('#text').fadeToggle("100")
+  });
+
+  $("#games").on("click", function (e) {
+    $('#playGame').fadeIn(500);
+    $('main').animate({ marginTop: '-200px' }, 'slow');
   });
 
   let greet = document.getElementsByTagName("span")

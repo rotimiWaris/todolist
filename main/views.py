@@ -3,39 +3,40 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import ToDoList, Item
 from .forms import CreateNewList
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
 def index(request, id):
-	obj = ToDoList.objects.get(id=id)
-	if obj in request.user.todolist.all():
+    obj = ToDoList.objects.get(id=id)
+    if obj in request.user.todolist.all():
 
-		if request.method == "POST":
-			if request.POST.get('save'):
-				for item in obj.item_set.all():
-					if request.POST.get("c" + str(item.id)) == "clicked":
-						item.complete = True
-					else:
-						item.complete = False
-					item.save()
+        if request.method == "POST":
+            if request.POST.get('save'):
+                for item in obj.item_set.all():
+                    if request.POST.get("c" + str(item.id)) == "clicked":
+                        item.complete = True
+                    else:
+                        item.complete = False
+                    item.save()
 
-			elif request.POST.get("newitem"):
-				txt = request.POST.get("new")
+            elif request.POST.get("newitem"):
+                txt = request.POST.get("new")
 
-				if len(txt) != 0:
-					obj.item_set.create(text=txt, complete=False)
-				else:
-					print("Invalid")
+                if len(txt) != 0:
+                    obj.item_set.create(text=txt, complete=False)
+                else:
+                    print("Invalid")
 
-		return render(request, "list.html", {"obj": obj})
+        return render(request, "list.html", {"obj": obj})
 
-	# messages.warning(request, "You're not the owner of that!")
-	return redirect('/')
+    # messages.warning(request, "You're not the owner of that!")
+    return redirect('/')
 
 
 def home(response):
-	#Gonna modernize this place later
-	return render(response, "home.html", {})
+    # Gonna modernize this place later
+    return render(response, "home.html", {})
 
 
 def create(request):
@@ -43,10 +44,10 @@ def create(request):
         form = CreateNewList(request.POST)
 
         if form.is_valid():
-        	new = form.cleaned_data['name']
-        	obj = ToDoList(name=new)
-        	obj.save()
-        	request.user.todolist.add(obj)
+            new = form.cleaned_data['name']
+            obj = ToDoList(name=new)
+            obj.save()
+            request.user.todolist.add(obj)
 
         return redirect(f"/{obj.id}")
 
@@ -55,10 +56,16 @@ def create(request):
 
     return render(request, "create.html", {"form": form})
 
+
 def view(request):
-	return render(request, "view.html", {})
+    return render(request, "view.html", {})
 
 
 def delete(request, id):
     ToDoList.objects.get(id=id).delete()
     return redirect("/view/")
+
+# GAMES
+@login_required
+def rpg(request):
+    return render(request, "games/rpg.html", {})
