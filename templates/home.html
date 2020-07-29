@@ -87,11 +87,12 @@
 <script>
   $("#showPacman").on("click", function (e) {
     $('#path').fadeToggle(500);
+    $('#text').hide(500);
     $('#games').slideToggle(500, 'linear');
   });
 
   $('#path').on("click", function (e) {
-    $('#text').fadeToggle("100")
+    $('#text').fadeToggle(600);
   });
 
   $("#games").on("click", function (e) {
@@ -102,6 +103,7 @@
   let greet = document.getElementsByTagName("span")
   let date = new Date();
   let currentHour = date.getHours();
+  let currentMinute = date.getMinutes();
 
   let message;
 
@@ -111,14 +113,14 @@
   } else if (currentHour >= 12 && currentHour < 18) {
     message = "Good Afternoon";
 
-  } else if (currentHour >= 18 && currentHour < 0) {
+  } else if (currentHour >= 18 && currentHour < 23 && currentMinute <= 59) {
     message = "Good Evening";
 
   } else if (currentHour >= 0 && currentHour < 5) {
     message = "You Should be sleeping";
 
   } else {
-    message = "Are you from another planet :O";
+    message = "Hello there";
   }
 
   $("#greet").text(message);
