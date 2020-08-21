@@ -69,3 +69,7 @@ def delete(request, id):
 @login_required
 def rpg(request):
     return render(request, "games/rpg.html", {})
+
+@login_required
+def whack_a_mole(request):
+    return render(request, "games/whack-a-mole.html", {})

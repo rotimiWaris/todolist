@@ -77,6 +77,8 @@
 <section id="playGame" style="display: none;">
   <div class="text-center">
     <a href="{% url 'core:rpg' %}" class="btn btn-lg waves-effect">Simple RPG game</a>
+    </br>
+    <a href="{% url 'core:whack-a-mole' %}" class="btn btn-lg waves-effect">Whack A Mole</a>
   </div>
 </section>
 {% endif %}
@@ -98,6 +100,7 @@
   $("#games").on("click", function (e) {
     $('#playGame').fadeIn(500);
     $('main').animate({ marginTop: '-200px' }, 'slow');
+    $('#path').hide();
   });
 
   let greet = document.getElementsByTagName("span")
@@ -113,7 +116,7 @@
   } else if (currentHour >= 12 && currentHour < 18) {
     message = "Good Afternoon";
 
-  } else if (currentHour >= 18 && currentHour < 23 && currentMinute <= 59) {
+  } else if (currentHour >= 18 && currentHour <= 23 && currentMinute <= 59) {
     message = "Good Evening";
 
   } else if (currentHour >= 0 && currentHour < 5) {

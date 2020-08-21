@@ -13,5 +13,6 @@ urlpatterns = [
     path("delete/<int:id>/", views.delete, name="delete"),
 
     # GAMES
-    path("locals-rpg/", views.rpg, name="rpg"),
+    path("rpg/", views.rpg, name="rpg"),
+    path("whack-a-mole/", views.whack_a_mole, name="whack-a-mole"),
 ]

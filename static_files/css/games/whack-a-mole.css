@@ -1,0 +1,45 @@
+
+.square {
+    width: 200px;
+    height: 200px;
+    border-style: solid;
+    border-color: #111;
+    cursor: pointer;
+}
+
+.grid {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    width: 618px;
+    height: 618px;
+}
+
+.mole {
+    background-image: url('/static/img/games/whack-a-mole/mole.jpg');
+    background-size: cover;
+}
+
+@media (max-width: 520px) {
+    .grid {
+        width: 300px;
+        height: 300px;
+    }
+
+    .square {
+        width: 30%;
+        height: 30%;
+    }
+}
+
+@media (min-width: 520px) and (max-width: 700px) {
+    .grid {
+        width: 500px;
+        height: 300px;
+    }
+
+    .square {
+        width: 150px;
+        height: 50%;
+    }
+}
