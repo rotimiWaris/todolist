@@ -1,0 +1,71 @@
+
+#grid {
+    background: linear-gradient(rgb(250, 5, 5), rgb(5, 255, 5), rgb(255, 5, 255));
+    box-sizing: border-box;
+    display: inline-block;
+}
+
+.col {
+    height: 70px;
+    width: 70px;
+    display: inline-block;
+    background: #fff;
+    margin: 5px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+.col:last-child {
+    margin-right: 20px;
+}
+
+.col:first-child {
+    margin-left: 20px;
+}
+
+.col.empty {
+    cursor: pointer;
+}
+
+.next-blue {
+    background-color: rgba(0, 60, 255, 0.3);
+}
+
+.next-black {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.col.blue {
+    background-color: blue;
+}
+
+.col.black {
+    background-color: #222;
+}
+
+@media (max-width: 310px) {
+    .col {
+        margin: 0;
+    }
+}
+
+/* .player-one {
+    background-color: blue;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
+.player-two {
+    background-color: red;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+} */

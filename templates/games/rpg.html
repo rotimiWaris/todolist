@@ -5,182 +5,7 @@
 {% block head_title %}Locals RPG Game{% endblock %}
 
 {% block extra_head %}
-<style>
-    * {
-        margin: 0;
-        padding: 0;
-        text-decoration: none;
-    }
-
-    body {
-        background-color: #1b1b1b;
-    }
-
-    img {
-        width: 160px;
-    }
-
-    .heading {
-        background-color: #1b1b1b;
-        height: 100px;
-        display: flex;
-        flex-direction: column;
-        flex-wrap: nowrap;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .heading h2 {
-        font-family: "Acme", sans-serif;
-        font-size: 30px;
-        color: #f8b700;
-    }
-
-    .heading p {
-        font-family: arial;
-        font-size: 18px;
-        color: #fff;
-        padding-bottom: 4px;
-    }
-
-    .interface {
-        padding: 0;
-        width: 100%;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        background-color: #1b1b1b;
-    }
-
-    .interface a {
-        display: flex;
-        flex-wrap: nowrap;
-    }
-
-    .interface img {
-        width: 120px;
-        height: 120px;
-    }
-
-    .img-avatar {
-        width: 160px !important;
-        height: 160px !important;
-    }
-
-    .interface div {
-        width: 220px;
-        padding: 0 10px 0 20px;
-        background-color: #211510;
-    }
-
-    .interface a:hover div {
-        background-color: #3c1d3d;
-    }
-
-    .interface h3 {
-        font-family: "Acme", sans-serif;
-        font-size: 22px;
-        color: #f8b700;
-        padding: 12px 0 4px;
-    }
-
-    .interface p {
-        font-family: arial;
-        font-size: 12px;
-        color: #d5c8af;
-        line-height: 20px;
-    }
-
-    .btn-prefight {
-        width: 100% !important;
-    }
-
-    .actions {
-        width: 100%;
-        display: flex;
-        flex-wrap: wrap;
-    }
-
-    .actions a {
-        width: 33.33%;
-        padding: 10px 0px;
-        text-align: center;
-        font-size: 14px;
-        font-family: arial;
-        color: #1b1b1b;
-    }
-
-    .actions a:nth-of-type(1) {
-        background-color: #e64747;
-    }
-
-    .actions a:nth-of-type(2) {
-        background-color: #e6ce47;
-    }
-
-    .actions a:nth-of-type(3) {
-        background-color: #6de647;
-    }
-
-    .actions a:hover {
-        opacity: 0.9;
-    }
-
-    .arena {
-        width: 100%;
-        height: 180px;
-        background-color: #1d373d;
-        /* background-image: url("img/arena-bg.png"); */
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: 35vh;
-        visibility: hidden;
-    }
-
-    .enemy {
-        padding: 0;
-        width: 100%;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        background-color: #1b1b1b;
-    }
-
-    .enemy a {
-        display: flex;
-        flex-wrap: nowrap;
-    }
-
-    .enemy img {
-        width: 120px;
-        height: 120px;
-    }
-
-    .enemy div {
-        width: 220px;
-        padding: 0 10px 0 20px;
-        background-color: #211510;
-    }
-
-    .enemy a:hover div {
-        background-color: #3c1d3d;
-    }
-
-    .enemy h3 {
-        font-family: "Acme", sans-serif;
-        font-size: 22px;
-        color: #f8b700;
-        padding: 12px 0 4px;
-    }
-
-    .enemy p {
-        font-family: arial;
-        font-size: 12px;
-        color: #d5c8af;
-        line-height: 20px;
-    }
-</style>
-
+<link href="{% static 'css/games/rpg.css' %}" rel="stylesheet">
 <script type="text/javascript" src="{% static 'js/games/rpg/player.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/games/rpg/enemy.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/games/rpg/gamemanager.js' %}"></script>
@@ -194,25 +19,25 @@
 </div>
 
 <div class="interface">
-    <a onclick="GameManager.setGameStart('Warrior')" href="#"><img src="{% static 'img/warrior.png' %}" alt="Warrior">
+    <a onclick="GameManager.setGameStart('Warrior')" href="#"><img src="{% static 'img/games/rpg/warrior.png' %}" alt="Warrior">
         <div>
             <h3>Warrior</h3>
             <p>Warriors have higher health and stamina, however their strength also makes them slower and clumsier.</p>
         </div>
     </a>
-    <a onclick="GameManager.setGameStart('Hunter')" href="#"><img src="{% static 'img/hunter.png' %}" alt="Hunter">
+    <a onclick="GameManager.setGameStart('Hunter')" href="#"><img src="{% static 'img/games/rpg/hunter.png' %}" alt="Hunter">
         <div>
             <h3>Hunter</h3>
-            <p>Hunters are well rounded fighters that focus on evening out their skills. No strengths or weeknesses</p>
+            <p>Hunters are well rounded fighters that focus on evening out their skills. No strengths or weaknesses</p>
         </div>
     </a>
-    <a onclick="GameManager.setGameStart('Mage')" href="#"><img src="{% static 'img/mage.png' %}" alt="Mage">
+    <a onclick="GameManager.setGameStart('Mage')" href="#"><img src="{% static 'img/games/rpg/mage.png' %}" alt="Mage">
         <div>
             <h3>Mage</h3>
             <p>Mages are glass canons that puts all their effort into spells. They slack on everything.</p>
         </div>
     </a>
-    <a onclick="GameManager.setGameStart('Ranger')" href="#"><img src="{% static 'img/ranger.png' %}" alt="Ranger">
+    <a onclick="GameManager.setGameStart('Ranger')" href="#"><img src="{% static 'img/games/rpg/ranger.png' %}" alt="Ranger">
         <div>
             <h3>Ranger</h3>
             <p>Rangers are fast and have high speed and stamina which makes up for their lack in strength and health.</p>

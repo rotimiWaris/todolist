@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block head_title %}Connect Four{% endblock %}
+
+{% block extra_head %}
+<link href="{% static 'css/games/connect-four.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+<div class="text-center">
+    <h1 class="mt-5">Connect Four</h1>
+</div>
+<h3>Current Player: <span id="current-player">blue</span></h3>
+
+<div class="text-center">
+<div id="grid"></div>
+</div>
+
+<div class="text-center">
+<a id="refresh" class="btn btn-lg btn-outline-secondary waves-effect">Refresh</a>
+</div>
+
+{% endblock %}
+    
+{% block extra_script %}
+<script type="text/javascript" src="{% static 'js/games/connect-four/grid.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/games/connect-four/app.js' %}"></script>
+{% endblock %}

@@ -15,4 +15,5 @@ urlpatterns = [
     # GAMES
     path("rpg/", views.rpg, name="rpg"),
     path("whack-a-mole/", views.whack_a_mole, name="whack-a-mole"),
+    path("connect-four/", views.connect_four, name="connect-four"),
 ]

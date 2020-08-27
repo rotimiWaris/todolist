@@ -23,7 +23,7 @@ let GameManager = {
         }
         let getInterface = document.querySelector(".interface");
 
-        getInterface.innerHTML = '<img src="/static/img/' + classType.toLowerCase() + '.png" alt="' + classType + '" class="img-avatar"><div><h3>' + classType + '</h3><p class="player-health">Health: ' + player.health + ' </p><p>Mana: ' + player.mana + ' </p><p>Strength: ' + player.strength + ' </p><p>Agility: ' + player.agility + ' </p><p>Speed: ' + player.speed + ' </p></div>';
+        getInterface.innerHTML = '<img src="/static/img/games/rpg/' + classType.toLowerCase() + '.png" alt="' + classType + '" class="img-avatar"><div><h3>' + classType + '</h3><p class="player-health">Health: ' + player.health + ' </p><p>Mana: ' + player.mana + ' </p><p>Strength: ' + player.strength + ' </p><p>Agility: ' + player.agility + ' </p><p>Speed: ' + player.speed + ' </p></div>';
     },
     setPreFight: function () {
         let getHeading = document.querySelector(".heading");
@@ -68,8 +68,8 @@ let GameManager = {
         }
         getHeading.innerHTML = '<p>Attack</p>';
 
-        getActions.innerHTML = '<a href="#" class="btn-prefight" onclick="PlayerMoves.calcAttack()">Attack</a>';
+        getActions.innerHTML = '<a class="btn-prefight" onclick="PlayerMoves.calcAttack()">Attack</a>';
 
-        getEnemy.innerHTML = '<img src="/static/img/' + enemy.enemyType.toLowerCase() + '.png" alt="' + enemy.enemyType + '" class="img-avatar"><div><h3>' + enemy.enemyType + '</h3><p class="enemy-health">Health: ' + enemy.health + ' </p><p>Mana: ' + enemy.mana + ' </p><p>Strength: ' + enemy.strength + ' </p><p>Agility: ' + enemy.agility + ' </p><p>Speed: ' + enemy.speed + ' </p></div>';
+        getEnemy.innerHTML = '<img src="/static/img/games/rpg/' + enemy.enemyType.toLowerCase() + '.png" alt="' + enemy.enemyType + '" class="img-avatar"><div><h3>' + enemy.enemyType + '</h3><p class="enemy-health">Health: ' + enemy.health + ' </p><p>Mana: ' + enemy.mana + ' </p><p>Strength: ' + enemy.strength + ' </p><p>Agility: ' + enemy.agility + ' </p><p>Speed: ' + enemy.speed + ' </p></div>';
     }
 }

@@ -73,3 +73,7 @@ def rpg(request):
 @login_required
 def whack_a_mole(request):
     return render(request, "games/whack-a-mole.html", {})
+
+@login_required
+def connect_four(request):
+    return render(request, "games/connect-four.html", {})
